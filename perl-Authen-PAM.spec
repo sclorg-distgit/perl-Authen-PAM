@@ -2,7 +2,7 @@
 %{!?scl:%global pkg_name %{name}}
 %{?java_common_find_provides_and_requires}
 
-%global baserelease 2
+%global baserelease 3
 
 Name:           %{?scl_prefix}perl-Authen-PAM
 Version:        0.16
@@ -27,6 +27,7 @@ BuildRequires:  perl(ExtUtils::MakeMaker)
 %{?_with_check:BuildRequires:  perl(strict)}
 %{?_with_check:BuildRequires:  perl(vars)}
 Requires:       perl(:MODULE_COMPAT_%(eval "$(perl -V:version)"; echo $version))
+Requires:       %{?scl_prefix}runtime
 
 %description
 This module provides a Perl interface to the PAM library.
@@ -72,6 +73,9 @@ set -e -x
 %{_mandir}/man3/*
 
 %changelog
+* Mon Aug 01 2016 Mat Booth <mat.booth@redhat.com> - 0.16-25.3
+- Ensure SCL runtime package is installed
+
 * Thu Jul 28 2016 Mat Booth <mat.booth@redhat.com> - 0.16-25.2
 - Minor SCL-isation fixes
 
